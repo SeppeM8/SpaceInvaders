@@ -1,15 +1,18 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
+import "package:flame/collisions.dart";
+import "package:flame/components.dart";
 
-import '../main.dart';
-import '../utils/vectorCalculations.dart';
-import 'monster.dart';
+import "../../utils/vector_calculations.dart";
+import "../game.dart";
+import "monster.dart";
 
-class Bullet extends SpriteComponent with HasGameRef<Game>, CollisionCallbacks {
-  Vector2 velocity;
+/// The bullet class
+class Bullet extends SpriteComponent
+    with HasGameRef<SpaceGame>, CollisionCallbacks {
+  final Vector2 _velocity;
 
+  /// Constructor.
   Bullet(double angle, double speed)
-      : velocity = vectorFromAngle(angle) * speed;
+      : _velocity = vectorFromAngle(angle) * speed;
 
   @override
   Future<void> onLoad() async {
@@ -17,7 +20,7 @@ class Bullet extends SpriteComponent with HasGameRef<Game>, CollisionCallbacks {
 
     add(RectangleHitbox());
 
-    sprite = await gameRef.loadSprite('bullet1.png');
+    sprite = await gameRef.loadSprite("bullet1.png");
     width = 30;
     height = 75;
     anchor = Anchor.center;
@@ -27,7 +30,7 @@ class Bullet extends SpriteComponent with HasGameRef<Game>, CollisionCallbacks {
   void update(double dt) {
     super.update(dt);
 
-    position += velocity * dt;
+    position += _velocity * dt;
 
     if (position.x < 0 ||
         position.x > gameRef.size.x ||
