@@ -22,6 +22,8 @@ class PauseButton extends StatelessWidget {
       child: TextButton(
         child: const Icon(
           Icons.pause_circle_outline,
+          color: Colors.grey,
+          size: 30.0,
         ),
         onPressed: () {
           _game.pauseEngine();

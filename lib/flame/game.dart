@@ -2,20 +2,17 @@ import "package:flame/components.dart";
 import "package:flame/events.dart";
 import "package:flame/game.dart";
 
-import "../flame/models/enemies_model.dart";
 import "../models/game_model.dart";
 import "../widgets/overlays/game_over_menu.dart";
 import "../widgets/overlays/pause_button.dart";
 import "sprites/bullet.dart";
+import "sprites/explosion.dart";
 import "sprites/monster.dart";
 import "sprites/player.dart";
 
 /// The main game class.
 class SpaceGame extends FlameGame
     with HasTappables, KeyboardEvents, HasCollisionDetection {
-  /// The enemies model.
-  final EnemiesModel enemiesModel = EnemiesModel();
-
   /// The game model.
   late GameModel gameModel;
 
@@ -32,7 +29,6 @@ class SpaceGame extends FlameGame
     }
 
     addAll([
-      enemiesModel,
       player,
     ]);
   }
@@ -40,6 +36,8 @@ class SpaceGame extends FlameGame
   @override
   void update(double dt) {
     super.update(dt);
+
+    gameModel.update(dt);
 
     if (player.isMounted && gameModel.lives <= 0) {
       pauseEngine();
@@ -51,13 +49,15 @@ class SpaceGame extends FlameGame
   /// Reset the game.
   void reset() {
     player.reset();
-    enemiesModel.reset();
     gameModel.reset();
 
     children.whereType<Bullet>().forEach((bullet) => bullet.removeFromParent());
     children
         .whereType<Monster>()
         .forEach((monster) => monster.removeFromParent());
+    children.whereType<Explosion>().forEach((explosion) {
+      explosion.removeFromParent();
+    });
   }
 
   /// Initialize/Replace the current game model.

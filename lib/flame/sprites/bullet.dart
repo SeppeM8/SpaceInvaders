@@ -24,6 +24,7 @@ class Bullet extends SpriteComponent
     width = 30;
     height = 75;
     anchor = Anchor.center;
+    priority = 1;
   }
 
   @override

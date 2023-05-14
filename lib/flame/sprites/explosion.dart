@@ -7,7 +7,7 @@ import "../game.dart";
 /// The explosion class
 class Explosion extends SpriteComponent with HasGameRef<SpaceGame> {
   // Properties
-  final double _explosionSpeed = 0.07;
+  final double _explosionSpeed = 0.05;
 
   // Status
   int _explosionFrame = 0;
@@ -17,6 +17,7 @@ class Explosion extends SpriteComponent with HasGameRef<SpaceGame> {
   Future<void> onLoad() async {
     sprite = game.explosionSprites[0];
     anchor = Anchor.center;
+    priority = 3;
     return super.onLoad();
   }
 

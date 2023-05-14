@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "../../../flame/game.dart";
 import "../../../utils/consts.dart";
+import "ability_button.dart";
 import "control_button.dart";
 
 /// The controls for the player.
@@ -30,6 +31,7 @@ class PlayerControls extends StatelessWidget {
               onUp: () => {_game.player.isShooting = false},
               iconData: Icons.radio_button_checked,
             ),
+            AbilityButton(),
           ],
         ),
         const Spacer(),

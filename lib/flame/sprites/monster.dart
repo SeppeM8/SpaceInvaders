@@ -1,8 +1,11 @@
+import "dart:math";
+
 import "package:flame/collisions.dart";
 import "package:flame/components.dart";
 
 import "../../utils/vector_calculations.dart";
 import "../game.dart";
+import "ability_sprite.dart";
 import "bullet.dart";
 import "explosion.dart";
 
@@ -15,6 +18,8 @@ class Monster extends SpriteComponent
 
   // Status
   bool _isCollidingWithMonster = false;
+
+  final Random _random = Random();
 
   /// Constructor.
   Monster({required Vector2 position}) : super(position: position);
@@ -29,6 +34,7 @@ class Monster extends SpriteComponent
     width = 30;
     height = 30;
     anchor = Anchor.center;
+    priority = 4;
   }
 
   @override
@@ -44,15 +50,23 @@ class Monster extends SpriteComponent
     _isCollidingWithMonster = false;
   }
 
+  /// Explode the monster.
+  void explode() {
+    final explosion = Explosion();
+    explosion.position = position;
+    game.add(explosion);
+    game.remove(this);
+  }
+
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
     if (other is Bullet) {
       game.gameModel.increaseScoreBy(1);
-      final explosion = Explosion();
-      explosion.position = position;
-      game.add(explosion);
-      game.remove(this);
+      explode();
+      if (_random.nextDouble() < 0.1) {
+        game.add(AbilitySprite(position: position));
+      }
     } else if (other is Monster) {
       _isCollidingWithMonster = length(game.player.position - position) >
           length(game.player.position - other.position);

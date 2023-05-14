@@ -22,7 +22,7 @@ class GamePlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (_) => GameModel(),
+        create: (_) => GameModel(game: _spaceGame),
         child: Consumer<GameModel>(builder: (context, gameModel, child) {
           _spaceGame.setGameModel(gameModel);
           return Scaffold(

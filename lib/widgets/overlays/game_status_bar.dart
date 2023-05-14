@@ -16,14 +16,17 @@ class GameStatusBar extends StatelessWidget {
       return Row(
         children: [
           Text(
-            "Score: ${gameModel.score}",
+            " Score: ${gameModel.score}",
             style: const TextStyle(
               fontSize: 20.0,
               color: Colors.white,
             ),
           ),
+          const SizedBox(width: 20.0),
+          _LivesWidget(lives: gameModel.lives),
+          const SizedBox(width: 20.0),
           Text(
-            " Lives: ${gameModel.lives}",
+            " Time: ${gameModel.enemiesModel.time.toStringAsFixed(1)}",
             style: const TextStyle(
               fontSize: 20.0,
               color: Colors.white,
@@ -32,5 +35,29 @@ class GameStatusBar extends StatelessWidget {
         ],
       );
     });
+  }
+}
+
+class _LivesWidget extends StatelessWidget {
+  final int lives;
+
+  const _LivesWidget({Key? key, required this.lives}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        for (int i = 0; i < lives; i++)
+          const Icon(
+            Icons.favorite,
+            color: Colors.red,
+          ),
+        for (int i = lives; i < 3; i++)
+          const Icon(
+            Icons.favorite,
+            color: Colors.grey,
+          ),
+      ],
+    );
   }
 }

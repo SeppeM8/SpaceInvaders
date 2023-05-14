@@ -51,6 +51,7 @@ class Player extends SpriteComponent
     width = 30;
     height = 30;
     anchor = Anchor.center;
+    priority = 5;
 
     game.overlays.add(PlayerControls.id);
   }
@@ -128,7 +129,7 @@ class Player extends SpriteComponent
     // Shooting
     if (isShooting && shootTimer <= 0) {
       shootTimer = _shootCooldown;
-      _shoot(position, angle, _shootSpeed);
+      shoot();
     } else {
       shootTimer -= dt;
     }
@@ -142,8 +143,10 @@ class Player extends SpriteComponent
     }
   }
 
-  void _shoot(Vector2 position, double angle, double speed) {
-    final Bullet bullet = Bullet(angle, speed);
+  /// Shoots a bullet from the player center with an optional angle
+  void shoot({double? angle}) {
+    angle ??= this.angle;
+    final Bullet bullet = Bullet(angle, _shootSpeed);
     bullet.position = position;
     bullet.angle = angle;
     game.add(bullet);
@@ -164,6 +167,9 @@ class Player extends SpriteComponent
       game.gameModel.removeLife();
       ghostTimer = _liveLostCooldown;
       opacity = 0.5;
+      if (game.gameModel.lives > 0) {
+        other.explode();
+      }
     }
   }
 }
