@@ -1,4 +1,4 @@
-import "dart:developer";
+import "dart:math";
 
 import "package:flutter/cupertino.dart";
 
@@ -23,6 +23,9 @@ class GameModel extends ChangeNotifier {
   /// The player model.
   late PlayerModel playerModel;
 
+  /// The random number generator.
+  final Random rng = Random();
+
   /// Constructor.
   GameModel({required this.game}) {
     enemiesModel = EnemiesModel(this);
@@ -37,7 +40,6 @@ class GameModel extends ChangeNotifier {
 
   /// Removes a life from the player.
   void removeLife() {
-    log("removeLife");
     lives--;
     notifyListeners();
   }
@@ -50,6 +52,7 @@ class GameModel extends ChangeNotifier {
   /// Updates the game model.
   void update(double dt) {
     enemiesModel.update(dt);
+    playerModel.update(dt);
   }
 
   /// Resets the score and lives to their default values.

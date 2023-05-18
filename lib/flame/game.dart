@@ -6,8 +6,8 @@ import "../models/game_model.dart";
 import "../widgets/overlays/game_over_menu.dart";
 import "../widgets/overlays/pause_button.dart";
 import "sprites/bullet.dart";
+import "sprites/enemy/linear_enemy.dart";
 import "sprites/explosion.dart";
-import "sprites/monster.dart";
 import "sprites/player.dart";
 
 /// The main game class.
@@ -22,8 +22,22 @@ class SpaceGame extends FlameGame
   /// The list of explosion sprites.
   late List<Sprite> explosionSprites = [];
 
+  /// Add an explosion at the given position.
+  void addExplosion(Vector2 position) {
+    final explosion = Explosion();
+    explosion.position = position;
+    add(explosion);
+  }
+
   @override
   Future<void> onLoad() async {
+    final backgroundImage = await images.load("background2.jpg");
+    final sprite = SpriteComponent.fromImage(
+      backgroundImage,
+      size: size,
+    );
+    add(sprite);
+
     for (int i = 1; i <= 27; i++) {
       explosionSprites.add(await loadSprite("explosion/explosion_$i.png"));
     }
@@ -53,7 +67,7 @@ class SpaceGame extends FlameGame
 
     children.whereType<Bullet>().forEach((bullet) => bullet.removeFromParent());
     children
-        .whereType<Monster>()
+        .whereType<LinearEnemy>()
         .forEach((monster) => monster.removeFromParent());
     children.whereType<Explosion>().forEach((explosion) {
       explosion.removeFromParent();

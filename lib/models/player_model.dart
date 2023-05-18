@@ -8,6 +8,9 @@ class PlayerModel {
   /// The ability which is available to the player.
   Ability? ability;
 
+  /// Whether the ability is active.
+  bool abilityActive = false;
+
   /// Constructor.
   PlayerModel(this._gameModel) : super();
 
@@ -17,13 +20,27 @@ class PlayerModel {
     _gameModel.notify();
   }
 
+  /// Updates the player model.
+  void update(double dt) {
+    if (ability != null) {
+      ability!.update(dt);
+    }
+  }
+
+  /// Ability finished.
+  void abilityFinished() {
+    abilityActive = false;
+    ability = null;
+    _gameModel.notify();
+  }
+
   /// Use the special ability of the player.
-  void useSpecial() {
+  void useAbility() {
     if (ability == null) {
       return;
     }
-    ability!.execute();
-    ability = null;
+    abilityActive = true;
+    ability!.execute(this);
     _gameModel.notify();
   }
 }

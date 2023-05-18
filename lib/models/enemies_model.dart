@@ -1,19 +1,25 @@
 import "dart:core";
-import "dart:math";
 
 import "package:flame/components.dart";
 
 import "../flame/game.dart";
-import "../flame/sprites/monster.dart";
+import "../flame/sprites/enemy/enemy.dart";
+import "../flame/sprites/enemy/linear_enemy.dart";
+import "../flame/sprites/enemy/linear_shooting_enemy.dart";
 import "game_model.dart";
 
 /// The enemies model.
 class EnemiesModel {
+  // Properties
+  /// The time between each enemy spawn.
+  double time = 4.0;
+
+  // Status
+  /// The time elapsed since the last enemy spawn.
+  double _timeElapsed = 0.0;
+
   final GameModel _gameModel;
   late SpaceGame _game;
-  double time = 4.0;
-  double _timeElapsed = 0.0;
-  final Random _rng = Random();
 
   /// Constructor.
   EnemiesModel(this._gameModel) : super() {
@@ -32,25 +38,29 @@ class EnemiesModel {
     }
   }
 
-  void _spawnRandomMonster() {
+  void _spawnRandomEnemy() {
+    const double margin = 30;
+
     final double position =
-        _rng.nextDouble() * 2 * (_game.size.x + _game.size.y);
-    Vector2 monsterPosition;
-    if (position < 2 * _game.size.x) {
-      monsterPosition = Vector2(position, 0);
+        _gameModel.rng.nextDouble() * 2 * (_game.size.x + _game.size.y);
+    Vector2 enemyPosition;
+    if (position < _game.size.x) {
+      enemyPosition = Vector2(position, -margin);
     } else if (position < _game.size.x + _game.size.y) {
-      monsterPosition = Vector2(_game.size.x, position - _game.size.x);
+      enemyPosition = Vector2(_game.size.x + margin, position - _game.size.x);
     } else if (position < 2 * _game.size.x + _game.size.y) {
-      monsterPosition = Vector2(
+      enemyPosition = Vector2(
           _game.size.x - (position - _game.size.x - _game.size.y),
-          _game.size.y);
+          _game.size.y + margin);
     } else {
-      monsterPosition = Vector2(
-          0, _game.size.y - (position - 2 * _game.size.x - _game.size.y));
+      enemyPosition = Vector2(
+          -margin, _game.size.y - (position - 2 * _game.size.x - _game.size.y));
     }
 
-    final Monster monster = Monster(position: monsterPosition);
-    _game.add(monster);
+    final Enemy enemy = (_gameModel.rng.nextDouble() < 0.9)
+        ? LinearEnemy(position: enemyPosition)
+        : LinearShootingEnemy(position: enemyPosition);
+    _game.add(enemy);
 
     _changeTime();
     _gameModel.notify();
@@ -60,7 +70,7 @@ class EnemiesModel {
   void update(double dt) {
     _timeElapsed += dt;
     if (_timeElapsed >= time) {
-      _spawnRandomMonster();
+      _spawnRandomEnemy();
       _timeElapsed = 0.0;
     }
   }

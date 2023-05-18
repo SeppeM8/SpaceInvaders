@@ -14,8 +14,9 @@ class AbilityButton extends StatelessWidget {
       return Align(
           alignment: Alignment.bottomLeft,
           child: IconButton(
-              onPressed: () => gameModel.playerModel.useSpecial(),
+              onPressed: () => gameModel.playerModel.useAbility(),
               icon: ImageIcon(gameModel.playerModel.ability!.image),
+              color: Colors.red,
               iconSize: 50.0));
     });
   }

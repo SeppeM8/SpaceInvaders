@@ -7,11 +7,17 @@ import "../../utils/vector_calculations.dart";
 import "../../widgets/overlays/controls/player_controls.dart";
 import "../game.dart";
 import "bullet.dart";
-import "monster.dart";
+import "enemy/enemy.dart";
 
 /// The player class
 class Player extends SpriteComponent
     with HasGameRef<SpaceGame>, KeyboardHandler, CollisionCallbacks {
+  late Sprite _idleSprite;
+  final double _idleSpriteHeight = 30;
+
+  late Sprite _thrustSprite;
+  final double _thrustSpriteHeight = 37.7;
+
   // Properties
   final double _rotationSpeed = 2;
   final double _acceleration = 200;
@@ -45,9 +51,12 @@ class Player extends SpriteComponent
 
     add(RectangleHitbox());
 
-    sprite = await gameRef.loadSprite("player-sprite.png");
+    _idleSprite = await gameRef.loadSprite("player-sprite.png");
+    _thrustSprite = await gameRef.loadSprite("player-sprite2.png");
+    sprite = _idleSprite;
 
-    position = gameRef.size / 2;
+    x = gameRef.size.x / 2;
+    y = gameRef.size.y / 5 * 4;
     width = 30;
     height = 30;
     anchor = Anchor.center;
@@ -90,8 +99,17 @@ class Player extends SpriteComponent
 
     // Velocity
     if (isAccelerating) {
+      sprite = _thrustSprite;
+      height = _thrustSpriteHeight;
+      anchor = Anchor(
+        0.5,
+        15 / _thrustSpriteHeight,
+      );
       velocity += vectorFromAngle(angle) * _acceleration * dt;
     } else {
+      sprite = _idleSprite;
+      height = _idleSpriteHeight;
+      anchor = const Anchor(0.5, 0.5);
       velocity *= _drag;
     }
 
@@ -146,16 +164,15 @@ class Player extends SpriteComponent
   /// Shoots a bullet from the player center with an optional angle
   void shoot({double? angle}) {
     angle ??= this.angle;
-    final Bullet bullet = Bullet(angle, _shootSpeed);
-    bullet.position = position;
-    bullet.angle = angle;
+    final Bullet bullet = Bullet(angle, _shootSpeed, position);
     game.add(bullet);
   }
 
   /// Resets the player to the center of the screen
   void reset() {
     ghostTimer = 0;
-    position = gameRef.size / 2;
+    x = gameRef.size.x / 2;
+    y = gameRef.size.y / 5 * 4;
     velocity = Vector2.zero();
     angle = 0;
   }
@@ -163,11 +180,14 @@ class Player extends SpriteComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
-    if (other is Monster && ghostTimer <= 0) {
+    if (ghostTimer <= 0 &&
+        (other is Enemy || (other is Bullet && other.isEnemyBullet))) {
       game.gameModel.removeLife();
       ghostTimer = _liveLostCooldown;
       opacity = 0.5;
-      if (game.gameModel.lives > 0) {
+      game.addExplosion(position);
+
+      if (game.gameModel.lives > 0 && other is Enemy) {
         other.explode();
       }
     }
