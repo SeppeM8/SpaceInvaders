@@ -1,5 +1,7 @@
 import "package:flame/collisions.dart";
 import "package:flame/components.dart";
+import "package:flame/flame.dart";
+import "package:flame/image_composition.dart";
 import "package:flutter/services.dart";
 
 import "../../utils/consts.dart";
@@ -10,16 +12,16 @@ import "bullet.dart";
 import "enemy/enemy.dart";
 
 /// The player class
-class Player extends SpriteComponent
+class Player extends SpriteAnimationComponent
     with HasGameRef<SpaceGame>, KeyboardHandler, CollisionCallbacks {
-  late Sprite _idleSprite;
-  final double _idleSpriteHeight = 30;
+  late SpriteAnimation _idleSprite;
 
-  late Sprite _thrustSprite;
-  final double _thrustSpriteHeight = 37.7;
+  late SpriteAnimation _thrustSprite;
 
-  // Properties
-  final double _rotationSpeed = 2;
+  late
+
+      // Properties
+      final double _rotationSpeed = 2;
   final double _acceleration = 200;
   final double _drag = 0.97;
   final double _shootCooldown = 0.8;
@@ -51,14 +53,35 @@ class Player extends SpriteComponent
 
     add(RectangleHitbox());
 
-    _idleSprite = await gameRef.loadSprite("player-sprite.png");
-    _thrustSprite = await gameRef.loadSprite("player-sprite2.png");
-    sprite = _idleSprite;
+    final json = await Flame.assets.readJson("images/player/animation.json");
+
+    final composition1 = ImageComposition()
+      ..add(await Flame.images.load("player/engine_0_idle.png"), Vector2.zero())
+      ..add(await Flame.images.load("player/hull_3.png"), Vector2.zero());
+    final image1 = await composition1.compose();
+
+    final composition2 = ImageComposition()
+      ..add(
+          await Flame.images.load("player/engine_0_power.png"), Vector2.zero())
+      ..add(await Flame.images.load("player/hull_3.png"), Vector2.zero());
+    final image2 = await composition2.compose();
+
+    _idleSprite = SpriteAnimation.fromAsepriteData(
+      image1,
+      json,
+    );
+
+    _thrustSprite = SpriteAnimation.fromAsepriteData(
+      image2,
+      json,
+    );
+
+    animation = _idleSprite;
 
     x = gameRef.size.x / 2;
     y = gameRef.size.y / 5 * 4;
-    width = 30;
-    height = 30;
+    width = 40;
+    height = 40;
     anchor = Anchor.center;
     priority = 5;
 
@@ -99,17 +122,10 @@ class Player extends SpriteComponent
 
     // Velocity
     if (isAccelerating) {
-      sprite = _thrustSprite;
-      height = _thrustSpriteHeight;
-      anchor = Anchor(
-        0.5,
-        15 / _thrustSpriteHeight,
-      );
+      animation = _thrustSprite;
       velocity += vectorFromAngle(angle) * _acceleration * dt;
     } else {
-      sprite = _idleSprite;
-      height = _idleSpriteHeight;
-      anchor = const Anchor(0.5, 0.5);
+      animation = _idleSprite;
       velocity *= _drag;
     }
 

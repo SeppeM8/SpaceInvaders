@@ -4,9 +4,9 @@
 
 ### Programming
 
-- [ ] Shooting enemy
-- [ ] Boosters
-- [ ] Engine fire
+- [x] Shooting enemy
+- [x] Boosters
+- [x] Engine fire
 
 ### Art
 
