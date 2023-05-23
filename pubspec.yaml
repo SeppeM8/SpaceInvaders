@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   flame: ^1.7.0
   provider: ^6.0.5
+  audioplayers: ^4.0.1
 
 flutter:
   uses-material-design: true
@@ -20,3 +21,6 @@ flutter:
     - assets/images/
     - assets/images/explosion/
     - assets/images/player/
+    - assets/images/enemy_0/
+    - assets/images/background/
+    - assets/audio/

@@ -9,14 +9,14 @@ import "../ability_sprite.dart";
 import "../bullet.dart";
 
 /// The enemy class
-abstract class Enemy extends SpriteComponent
+abstract class Enemy extends SpriteAnimationComponent
     with HasGameRef<SpaceGame>, CollisionCallbacks {
   // Properties
   /// Default speed.
-  final double speed = 60;
+  final double speed = 40;
 
   /// Speed when colliding with other Enemy.
-  final double collidingSpeed = 30;
+  final double collidingSpeed = 25;
 
   // Status
   /// Whether the enemy is colliding with another enemy.

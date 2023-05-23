@@ -19,12 +19,11 @@ class EnemiesModel {
   double _timeElapsed = 0.0;
 
   final GameModel _gameModel;
-  late SpaceGame _game;
+
+  SpaceGame get _game => _gameModel.game!;
 
   /// Constructor.
-  EnemiesModel(this._gameModel) : super() {
-    _game = _gameModel.game;
-  }
+  EnemiesModel(this._gameModel);
 
   void _changeTime() {
     if (time > 3.0) {

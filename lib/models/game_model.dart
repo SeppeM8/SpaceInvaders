@@ -6,10 +6,12 @@ import "../flame/game.dart";
 import "enemies_model.dart";
 import "player_model.dart";
 
+// Creating this as a file private object so as to
+// avoid unwanted rebuilds of the whole game object.
 /// A model that holds the score and lives of the player.
 class GameModel extends ChangeNotifier {
-  /// The game.
-  final SpaceGame game;
+  /// Returns the game object.
+  SpaceGame? game;
 
   /// The score of the player.
   int score = 0;
@@ -27,7 +29,7 @@ class GameModel extends ChangeNotifier {
   final Random rng = Random();
 
   /// Constructor.
-  GameModel({required this.game}) {
+  GameModel() {
     enemiesModel = EnemiesModel(this);
     playerModel = PlayerModel(this);
   }
@@ -61,5 +63,10 @@ class GameModel extends ChangeNotifier {
     score = 0;
     lives = 3;
     notifyListeners();
+  }
+
+  /// Sets the game object.
+  void setGame(SpaceGame game) {
+    this.game = game;
   }
 }

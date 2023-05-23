@@ -1,4 +1,5 @@
 import "package:flame/components.dart";
+import "package:flame/flame.dart";
 
 import "../bullet.dart";
 import "enemy.dart";
@@ -21,9 +22,15 @@ class LinearShootingEnemy extends Enemy {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    sprite = await gameRef.loadSprite("boss1.png");
+    final image = await Flame.images.load("enemy_0/frigate.png");
+    final json = await Flame.assets.readJson("images/enemy_0/frigate.json");
+
+    animation = SpriteAnimation.fromAsepriteData(
+      image,
+      json,
+    );
+
     width = 40;
-    height = 40;
   }
 
   @override

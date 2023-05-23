@@ -5,20 +5,22 @@
 ### Programming
 
 - [x] Shooting enemy
-- [x] Boosters
+- [x] Abilities
 - [x] Engine fire
 
 ### Art
 
-- [ ] Find sprites
-- [ ] Find sounds
-- [ ] Find background
+- [x] Sprites
+- [ ] Sounds
+- [x] Background
+- [ ] Ability drops
+- [ ] Ability animations
 
 ## Stage 2 - Storage
 
 ### Programming
 
-- [ ] Save high score and bought ships
+- [ ] Save high score
 - [ ] Add coin system
 - [ ] Add multiple buyable ships with different specs
 - [ ] Add upgrades?

@@ -1,5 +1,6 @@
 import "package:flame/collisions.dart";
 import "package:flame/components.dart";
+import "package:flame/flame.dart";
 
 import "../../utils/vector_calculations.dart";
 import "../game.dart";
@@ -7,7 +8,7 @@ import "enemy/enemy.dart";
 import "player.dart";
 
 /// The bullet class
-class Bullet extends SpriteComponent
+class Bullet extends SpriteAnimationComponent
     with HasGameRef<SpaceGame>, CollisionCallbacks {
   // Properties
   final Vector2 _velocity;
@@ -27,12 +28,15 @@ class Bullet extends SpriteComponent
 
     add(RectangleHitbox());
 
-    sprite = isEnemyBullet
-        ? await gameRef.loadSprite("bullet2.png")
-        : await gameRef.loadSprite("bullet1.png");
+    final image = await Flame.images.load("projectile_0.png");
+    final json = await Flame.assets.readJson("images/projectile_0.json");
 
-    width = 30;
-    height = 75;
+    animation = SpriteAnimation.fromAsepriteData(
+      image,
+      json,
+    );
+
+    width = 10;
     anchor = Anchor.center;
     priority = 1;
   }

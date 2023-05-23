@@ -1,3 +1,4 @@
+import "package:audioplayers/audioplayers.dart";
 import "package:flutter/material.dart";
 
 import "../../flame/game.dart";
@@ -44,6 +45,7 @@ class PauseMenu extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 3,
             child: ElevatedButton(
               onPressed: () {
+                AudioPlayer().play(AssetSource("audio/interface1.mp3"));
                 _game.resumeEngine();
                 _game.overlays.remove(PauseMenu.id);
                 _game.overlays.add(PauseButton.id);
@@ -57,6 +59,7 @@ class PauseMenu extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 3,
             child: ElevatedButton(
               onPressed: () {
+                AudioPlayer().play(AssetSource("audio/interface1.mp3"));
                 _game.overlays.remove(PauseMenu.id);
                 _game.overlays.add(PauseButton.id);
                 _game.reset();
@@ -71,13 +74,14 @@ class PauseMenu extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 3,
             child: ElevatedButton(
               onPressed: () {
+                AudioPlayer().play(AssetSource("audio/interface1.mp3"));
                 _game.overlays.remove(PauseMenu.id);
                 _game.reset();
                 _game.resumeEngine();
 
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute<MainMenu>(
-                    builder: (context) => const MainMenu(),
+                    builder: (context) => MainMenu(),
                   ),
                 );
               },

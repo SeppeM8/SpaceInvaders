@@ -65,7 +65,7 @@ class GameOverMenu extends StatelessWidget {
 
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute<MainMenu>(
-                    builder: (context) => const MainMenu(),
+                    builder: (context) => MainMenu(),
                   ),
                 );
               },

@@ -18,10 +18,8 @@ class Player extends SpriteAnimationComponent
 
   late SpriteAnimation _thrustSprite;
 
-  late
-
-      // Properties
-      final double _rotationSpeed = 2;
+  // Properties
+  final double _rotationSpeed = 2;
   final double _acceleration = 200;
   final double _drag = 0.97;
   final double _shootCooldown = 0.8;
@@ -51,8 +49,6 @@ class Player extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    add(RectangleHitbox());
-
     final json = await Flame.assets.readJson("images/player/animation.json");
 
     final composition1 = ImageComposition()
@@ -78,10 +74,16 @@ class Player extends SpriteAnimationComponent
 
     animation = _idleSprite;
 
+    width = 40;
+
+    final hitbox = PolygonHitbox.relative(
+        [Vector2(0, -0.6), Vector2(0.75, 0.7), Vector2(-0.75, 0.7)],
+        parentSize: Vector2.all(width));
+
+    add(hitbox);
+
     x = gameRef.size.x / 2;
     y = gameRef.size.y / 5 * 4;
-    width = 40;
-    height = 40;
     anchor = Anchor.center;
     priority = 5;
 

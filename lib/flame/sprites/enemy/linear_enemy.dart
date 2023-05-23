@@ -1,4 +1,5 @@
 import "package:flame/components.dart";
+import "package:flame/flame.dart";
 
 import "enemy.dart";
 
@@ -11,8 +12,14 @@ class LinearEnemy extends Enemy {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    sprite = await gameRef.loadSprite("monster1.png");
-    width = 30;
-    height = 30;
+    final image = await Flame.images.load("enemy_0/scout.png");
+    final json = await Flame.assets.readJson("images/enemy_0/scout.json");
+
+    animation = SpriteAnimation.fromAsepriteData(
+      image,
+      json,
+    );
+
+    width = 25;
   }
 }

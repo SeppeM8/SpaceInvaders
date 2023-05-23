@@ -1,12 +1,13 @@
 import "package:flame/components.dart";
 import "package:flame/events.dart";
 import "package:flame/game.dart";
+import "package:flame/image_composition.dart";
 
 import "../models/game_model.dart";
 import "../widgets/overlays/game_over_menu.dart";
 import "../widgets/overlays/pause_button.dart";
 import "sprites/bullet.dart";
-import "sprites/enemy/linear_enemy.dart";
+import "sprites/enemy/enemy.dart";
 import "sprites/explosion.dart";
 import "sprites/player.dart";
 
@@ -20,7 +21,7 @@ class SpaceGame extends FlameGame
   final Player player = Player();
 
   /// The list of explosion sprites.
-  late List<Sprite> explosionSprites = [];
+  late List<Sprite> explosionSprites;
 
   /// Add an explosion at the given position.
   void addExplosion(Vector2 position) {
@@ -29,18 +30,41 @@ class SpaceGame extends FlameGame
     add(explosion);
   }
 
+  /// Set the game model.
+  void setGameModel(GameModel gameModel) {
+    this.gameModel = gameModel;
+    gameModel.game = this;
+  }
+
   @override
   Future<void> onLoad() async {
-    final backgroundImage = await images.load("background2.jpg");
+    super.onLoad();
+    final backgroundImage = await images.load("background/stars_0.png");
+
+    final background = ImageComposition()..add(backgroundImage, Vector2.zero());
+
+    for (int i = 1; i * 512 < size.x; i++) {
+      background.add(backgroundImage, Vector2(i * 512, 0));
+      for (int j = 1; j * 512 < size.y; j++) {
+        background.add(backgroundImage, Vector2(i * 512, j * 512));
+      }
+    }
+
     final sprite = SpriteComponent.fromImage(
-      backgroundImage,
+      await background.compose(),
       size: size,
     );
     add(sprite);
 
+    final List<Future<Sprite>> loadingTasks = [];
+
     for (int i = 1; i <= 27; i++) {
-      explosionSprites.add(await loadSprite("explosion/explosion_$i.png"));
+      loadingTasks.add(loadSprite("explosion/explosion_$i.png"));
     }
+
+    explosionSprites = await Future.wait(loadingTasks);
+
+    debugMode = false;
 
     addAll([
       player,
@@ -67,15 +91,10 @@ class SpaceGame extends FlameGame
 
     children.whereType<Bullet>().forEach((bullet) => bullet.removeFromParent());
     children
-        .whereType<LinearEnemy>()
+        .whereType<Enemy>()
         .forEach((monster) => monster.removeFromParent());
     children.whereType<Explosion>().forEach((explosion) {
       explosion.removeFromParent();
     });
-  }
-
-  /// Initialize/Replace the current game model.
-  void setGameModel(GameModel gameModel) {
-    this.gameModel = gameModel;
   }
 }
