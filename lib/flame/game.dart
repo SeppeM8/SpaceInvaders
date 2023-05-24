@@ -23,6 +23,9 @@ class SpaceGame extends FlameGame
   /// The list of explosion sprites.
   late List<Sprite> explosionSprites;
 
+  /// The list of money sprites.
+  late List<Sprite> moneySprites;
+
   /// Add an explosion at the given position.
   void addExplosion(Vector2 position) {
     final explosion = Explosion();
@@ -57,12 +60,18 @@ class SpaceGame extends FlameGame
     add(sprite);
 
     final List<Future<Sprite>> loadingTasks = [];
-
     for (int i = 1; i <= 27; i++) {
       loadingTasks.add(loadSprite("explosion/explosion_$i.png"));
     }
-
     explosionSprites = await Future.wait(loadingTasks);
+
+    final List<Future<Sprite>> loadingTasks2 = [];
+    for (final String value in ["Gold", "Silver", "Bronze"]) {
+      for (int i = 0; i < 10; i++) {
+        loadingTasks2.add(loadSprite("money/${value}_$i.png"));
+      }
+    }
+    moneySprites = await Future.wait(loadingTasks2);
 
     debugMode = false;
 
@@ -81,6 +90,7 @@ class SpaceGame extends FlameGame
       pauseEngine();
       overlays.remove(PauseButton.id);
       overlays.add(GameOverMenu.id);
+      gameModel.gameOver();
     }
   }
 

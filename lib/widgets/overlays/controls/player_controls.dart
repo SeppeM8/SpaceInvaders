@@ -19,7 +19,7 @@ class PlayerControls extends StatefulWidget {
         super(key: key);
 
   @override
-  _PlayerControlsState createState() => _PlayerControlsState();
+  State<PlayerControls> createState() => _PlayerControlsState();
 }
 
 class _PlayerControlsState extends State<PlayerControls> {

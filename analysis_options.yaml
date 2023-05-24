@@ -10,7 +10,7 @@
 include: package:flutter_lints/recommended.yaml
 
 analyzer:
-  exclude: [ build/**, analysis_options.yaml ]
+  exclude: [ build/**, analysis_options.yaml, lib/**.g.dart ]
   language:
     strict-casts: true
     strict-inference: true

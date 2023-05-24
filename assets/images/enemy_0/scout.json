@@ -1,0 +1,101 @@
+{ "frames": {
+   "Kla'ed - Scout - Engine 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 1.aseprite": {
+    "frame": { "x": 22, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 2.aseprite": {
+    "frame": { "x": 44, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 3.aseprite": {
+    "frame": { "x": 66, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 4.aseprite": {
+    "frame": { "x": 88, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 5.aseprite": {
+    "frame": { "x": 110, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 6.aseprite": {
+    "frame": { "x": 132, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 7.aseprite": {
+    "frame": { "x": 154, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 8.aseprite": {
+    "frame": { "x": 176, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   },
+   "Kla'ed - Scout - Engine 9.aseprite": {
+    "frame": { "x": 198, "y": 0, "w": 22, "h": 28 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 28 },
+    "sourceSize": { "w": 22, "h": 28 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
+  "image": "Kla'ed - Scout - Engine.png",
+  "format": "RGBA8888",
+  "size": { "w": 220, "h": 28 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 8", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 9", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 7", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 8 Copy", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

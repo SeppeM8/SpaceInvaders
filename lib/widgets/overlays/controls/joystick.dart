@@ -21,7 +21,7 @@ class JoyStick extends StatefulWidget {
   const JoyStick(this.player);
 
   @override
-  _JoyStickState createState() => _JoyStickState();
+  State<JoyStick> createState() => _JoyStickState();
 }
 
 class _JoyStickState extends State<JoyStick> {

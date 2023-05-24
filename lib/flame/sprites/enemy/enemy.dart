@@ -7,6 +7,7 @@ import "../../../utils/vector_calculations.dart";
 import "../../game.dart";
 import "../ability_sprite.dart";
 import "../bullet.dart";
+import "../money.dart";
 
 /// The enemy class
 abstract class Enemy extends SpriteAnimationComponent
@@ -66,7 +67,10 @@ abstract class Enemy extends SpriteAnimationComponent
       game.gameModel.increaseScoreBy(1);
       if (_random.nextDouble() < 0.1) {
         game.add(AbilitySprite(position: position));
+      } else {
+        game.add(Money(position: position));
       }
+
       explode();
     } else if (other is Enemy) {
       isCollidingWithEnemy = length(game.player.position - position) >

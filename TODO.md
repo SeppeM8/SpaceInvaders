@@ -20,7 +20,7 @@
 
 ### Programming
 
-- [ ] Save high score
+- [x] Save high score
 - [ ] Add coin system
 - [ ] Add multiple buyable ships with different specs
 - [ ] Add upgrades?

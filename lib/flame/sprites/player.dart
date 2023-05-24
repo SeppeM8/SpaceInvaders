@@ -2,6 +2,7 @@ import "package:flame/collisions.dart";
 import "package:flame/components.dart";
 import "package:flame/flame.dart";
 import "package:flame/image_composition.dart";
+import "package:flame_audio/flame_audio.dart";
 import "package:flutter/services.dart";
 
 import "../../utils/consts.dart";
@@ -10,6 +11,7 @@ import "../../widgets/overlays/controls/player_controls.dart";
 import "../game.dart";
 import "bullet.dart";
 import "enemy/enemy.dart";
+import "money.dart";
 
 /// The player class
 class Player extends SpriteAnimationComponent
@@ -154,10 +156,8 @@ class Player extends SpriteAnimationComponent
     switch (rotation) {
       case Rotation.LEFT:
         angle -= dt * _rotationSpeed;
-        break;
       case Rotation.RIGHT:
         angle += dt * _rotationSpeed;
-        break;
       case Rotation.NONE:
         break;
     }
@@ -198,6 +198,13 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
+
+    if (other is Money) {
+      game.gameModel.addMoney(other.value);
+      game.remove(other);
+      FlameAudio.play("coin.mp3");
+    }
+
     if (ghostTimer <= 0 &&
         (other is Enemy || (other is Bullet && other.isEnemyBullet))) {
       game.gameModel.removeLife();

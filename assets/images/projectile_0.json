@@ -1,0 +1,53 @@
+{ "frames": {
+   "Main ship weapon - Projectile - Auto cannon bullet 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 100
+   },
+   "Main ship weapon - Projectile - Auto cannon bullet 1.aseprite": {
+    "frame": { "x": 10, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 100
+   },
+   "Main ship weapon - Projectile - Auto cannon bullet 2.aseprite": {
+    "frame": { "x": 20, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 100
+   },
+   "Main ship weapon - Projectile - Auto cannon bullet 3.aseprite": {
+    "frame": { "x": 30, "y": 0, "w": 10, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 16 },
+    "sourceSize": { "w": 10, "h": 16 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
+  "image": "Main ship weapon - Projectile - Auto cannon bullet.png",
+  "format": "RGBA8888",
+  "size": { "w": 40, "h": 16 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Bullet", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 2", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 3", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 6", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

@@ -1,12 +1,14 @@
 import "package:audioplayers/audioplayers.dart";
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
 
+import "../models/game_model.dart";
 import "game_play.dart";
 
 /// The main menu screen.
 class MainMenu extends StatefulWidget {
   @override
-  _MainMenuState createState() => _MainMenuState();
+  State<MainMenu> createState() => _MainMenuState();
 }
 
 class _MainMenuState extends State<MainMenu> {
@@ -23,9 +25,15 @@ class _MainMenuState extends State<MainMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
+    return Consumer<GameModel>(builder: (context, gameModel, child) {
+      return Scaffold(
+          body: Stack(children: [
+        Align(
+          child: Text("High Score: ${gameModel.highScore}"),
+          alignment: Alignment.topLeft,
+        ),
+        Center(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Game title.
@@ -62,8 +70,8 @@ class _MainMenuState extends State<MainMenu> {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        )),
+      ]));
+    });
   }
 }

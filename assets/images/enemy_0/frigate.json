@@ -1,0 +1,117 @@
+{ "frames": {
+   "Kla'ed - Frigate - Engine 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 1.aseprite": {
+    "frame": { "x": 36, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 2.aseprite": {
+    "frame": { "x": 72, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 3.aseprite": {
+    "frame": { "x": 108, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 4.aseprite": {
+    "frame": { "x": 144, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 5.aseprite": {
+    "frame": { "x": 180, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 6.aseprite": {
+    "frame": { "x": 216, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 7.aseprite": {
+    "frame": { "x": 252, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 8.aseprite": {
+    "frame": { "x": 288, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 9.aseprite": {
+    "frame": { "x": 324, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 10.aseprite": {
+    "frame": { "x": 360, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   },
+   "Kla'ed - Frigate - Engine 11.aseprite": {
+    "frame": { "x": 396, "y": 0, "w": 36, "h": 43 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 36, "h": 43 },
+    "sourceSize": { "w": 36, "h": 43 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
+  "image": "Kla'ed - Frigate - Engine.png",
+  "format": "RGBA8888",
+  "size": { "w": 432, "h": 43 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 9", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 11", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 7", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 10", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

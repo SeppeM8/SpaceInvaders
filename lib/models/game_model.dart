@@ -1,23 +1,54 @@
 import "dart:math";
 
 import "package:flutter/cupertino.dart";
+import "package:hive/hive.dart";
 
 import "../flame/game.dart";
 import "enemies_model.dart";
+import "game_data.dart";
 import "player_model.dart";
 
 // Creating this as a file private object so as to
 // avoid unwanted rebuilds of the whole game object.
 /// A model that holds the score and lives of the player.
 class GameModel extends ChangeNotifier {
-  /// Returns the game object.
-  SpaceGame? game;
+  // Status
 
   /// The score of the player.
   int score = 0;
 
+  /// The high score of the player.
+  int get highScore => data.highScore;
+
+  /// Sets the high score of the player.
+  set highScore(int value) {
+    data.highScore = value;
+    data.save();
+    notifyListeners();
+  }
+
+  /// The money of the player.
+  int get money => data.money;
+
+  /// Sets the money of the player.
+  set money(int value) {
+    data.money = value;
+    data.save();
+    notifyListeners();
+  }
+
+  /// Adds money to the player.
+  void addMoney(int value) {
+    data.money += value;
+    data.save();
+    notifyListeners();
+  }
+
   /// The lives of the player.
   int lives = 3;
+
+  /// The game object.
+  SpaceGame? game;
 
   /// The enemies model.
   late EnemiesModel enemiesModel;
@@ -28,8 +59,11 @@ class GameModel extends ChangeNotifier {
   /// The random number generator.
   final Random rng = Random();
 
+  /// The box that holds the game data.
+  final GameData data;
+
   /// Constructor.
-  GameModel() {
+  GameModel(Box<GameData> box) : data = box.get("main")! {
     enemiesModel = EnemiesModel(this);
     playerModel = PlayerModel(this);
   }
@@ -63,6 +97,13 @@ class GameModel extends ChangeNotifier {
     score = 0;
     lives = 3;
     notifyListeners();
+  }
+
+  /// Game over.
+  void gameOver() {
+    if (score > highScore) {
+      highScore = score;
+    }
   }
 
   /// Sets the game object.

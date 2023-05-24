@@ -16,6 +16,14 @@ class GameStatusBar extends StatelessWidget {
       return Row(
         children: [
           Text(
+            "High Score: ${gameModel.highScore}",
+            style: const TextStyle(
+              fontSize: 20.0,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 20.0),
+          Text(
             " Score: ${gameModel.score}",
             style: const TextStyle(
               fontSize: 20.0,
@@ -32,6 +40,8 @@ class GameStatusBar extends StatelessWidget {
               color: Colors.white,
             ),
           ),
+          const SizedBox(width: 20.0),
+          _MoneyWidget(money: gameModel.money),
         ],
       );
     });
@@ -57,6 +67,31 @@ class _LivesWidget extends StatelessWidget {
             Icons.favorite,
             color: Colors.grey,
           ),
+      ],
+    );
+  }
+}
+
+class _MoneyWidget extends StatelessWidget {
+  final int money;
+
+  const _MoneyWidget({Key? key, required this.money}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Image(
+          height: 20.0,
+          image: AssetImage("assets/images/money/Gold_0.png"),
+        ),
+        Text(
+          " $money",
+          style: const TextStyle(
+            fontSize: 20.0,
+            color: Colors.white,
+          ),
+        ),
       ],
     );
   }
