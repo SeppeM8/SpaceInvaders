@@ -88,8 +88,6 @@ class Player extends SpriteAnimationComponent
     y = gameRef.size.y / 5 * 4;
     anchor = Anchor.center;
     priority = 5;
-
-    game.overlays.add(PlayerControls.id);
   }
 
   @override
@@ -210,7 +208,6 @@ class Player extends SpriteAnimationComponent
       game.gameModel.removeLife();
       ghostTimer = _liveLostCooldown;
       opacity = 0.5;
-      game.addExplosion(position);
 
       if (game.gameModel.lives > 0 && other is Enemy) {
         other.explode();

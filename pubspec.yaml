@@ -1,6 +1,6 @@
 name: space_invaders
 description: A little space adventure.
-version: 0.0.0
+version: 0.0.1
 publish_to: none
 
 

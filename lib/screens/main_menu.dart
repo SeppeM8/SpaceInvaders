@@ -1,6 +1,7 @@
 import "package:audioplayers/audioplayers.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
+import "package:space_invaders/screens/shop.dart";
 
 import "../models/game_model.dart";
 import "game_play.dart";
@@ -67,6 +68,22 @@ class _MainMenuState extends State<MainMenu> {
                   );
                 },
                 child: const Text("Play"),
+              ),
+            ),
+
+            // Upgrades button
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 3,
+              child: ElevatedButton(
+                onPressed: () {
+                  AudioPlayer().play(AssetSource("audio/interface1.mp3"));
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute<Shop>(
+                      builder: (context) => const Shop(),
+                    ),
+                  );
+                },
+                child: const Text("Upgrades"),
               ),
             ),
           ],

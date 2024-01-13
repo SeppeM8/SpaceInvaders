@@ -67,7 +67,7 @@ abstract class Enemy extends SpriteAnimationComponent
       game.gameModel.increaseScoreBy(1);
       if (_random.nextDouble() < 0.1) {
         game.add(AbilitySprite(position: position));
-      } else {
+      } else if (_random.nextDouble() < 0.5) {
         game.add(Money(position: position));
       }
 

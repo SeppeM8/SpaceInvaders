@@ -8,8 +8,6 @@ import "enemies_model.dart";
 import "game_data.dart";
 import "player_model.dart";
 
-// Creating this as a file private object so as to
-// avoid unwanted rebuilds of the whole game object.
 /// A model that holds the score and lives of the player.
 class GameModel extends ChangeNotifier {
   // Status
@@ -63,7 +61,8 @@ class GameModel extends ChangeNotifier {
   final GameData data;
 
   /// Constructor.
-  GameModel(Box<GameData> box) : data = box.get("main")! {
+  GameModel(Box<GameData> box)
+      : data = box.get("main", defaultValue: GameData.defaultData)! {
     enemiesModel = EnemiesModel(this);
     playerModel = PlayerModel(this);
   }
@@ -94,6 +93,7 @@ class GameModel extends ChangeNotifier {
   /// Resets the score and lives to their default values.
   void reset() {
     enemiesModel.reset();
+    playerModel.reset();
     score = 0;
     lives = 3;
     notifyListeners();

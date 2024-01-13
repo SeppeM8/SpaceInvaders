@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 
 import "../../flame/game.dart";
 import "../../screens/main_menu.dart";
+import "controls/player_controls.dart";
 import "pause_button.dart";
 
 /// This class represents the pause menu overlay.
@@ -49,6 +50,7 @@ class PauseMenu extends StatelessWidget {
                 _game.resumeEngine();
                 _game.overlays.remove(PauseMenu.id);
                 _game.overlays.add(PauseButton.id);
+                _game.overlays.add(PlayerControls.id);
               },
               child: const Text("Resume"),
             ),
@@ -62,6 +64,7 @@ class PauseMenu extends StatelessWidget {
                 AudioPlayer().play(AssetSource("audio/interface1.mp3"));
                 _game.overlays.remove(PauseMenu.id);
                 _game.overlays.add(PauseButton.id);
+                _game.overlays.add(PlayerControls.id);
                 _game.reset();
                 _game.resumeEngine();
               },

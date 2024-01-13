@@ -9,6 +9,7 @@ import "../widgets/overlays/pause_button.dart";
 import "sprites/bullet.dart";
 import "sprites/enemy/enemy.dart";
 import "sprites/explosion.dart";
+import "sprites/money.dart";
 import "sprites/player.dart";
 
 /// The main game class.
@@ -100,6 +101,7 @@ class SpaceGame extends FlameGame
     gameModel.reset();
 
     children.whereType<Bullet>().forEach((bullet) => bullet.removeFromParent());
+    children.whereType<Money>().forEach((money) => money.removeFromParent());
     children
         .whereType<Enemy>()
         .forEach((monster) => monster.removeFromParent());

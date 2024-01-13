@@ -9,15 +9,19 @@ import "../game.dart";
 class Money extends SpriteComponent
     with HasGameRef<SpaceGame>, CollisionCallbacks {
   // Properties
-  final double _rotationSpeed = 0.1;
-  final int _frameCount = 10;
+  static const double _rotationSpeed = 0.1;
+  static const int _frameCount = 10;
+  static const List<double> _valueTimes = [3, 6, 11];
+  static const List<int> _values = [5, 2, 1];
 
-  /// The value of the money.
-  final int value = 1;
+  /// The current value of the money.
+  int get value => _values[_valueIndex];
 
   // Status
   int _currentFrame = 0;
   double _rotationTimer = 0.0;
+  double _lifeTimer = 0.0;
+  int _valueIndex = 0;
 
   /// Constructor.
   Money({required Vector2 position})
@@ -36,6 +40,15 @@ class Money extends SpriteComponent
 
   @override
   void update(double dt) {
+    _lifeTimer += dt;
+    if (_lifeTimer >= _valueTimes[_valueIndex]) {
+      if (_valueIndex < _valueTimes.length - 1) {
+        _valueIndex++;
+      } else {
+        game.remove(this);
+      }
+    }
+
     _rotationTimer -= dt;
     if (_rotationTimer <= 0) {
       _rotationTimer = _rotationSpeed;
@@ -43,7 +56,7 @@ class Money extends SpriteComponent
       if (_currentFrame >= _frameCount) {
         _currentFrame = 0;
       }
-      sprite = game.moneySprites[_currentFrame];
+      sprite = game.moneySprites[_valueIndex * 10 + _currentFrame];
     }
 
     super.update(dt);

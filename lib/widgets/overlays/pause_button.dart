@@ -2,6 +2,7 @@ import "package:audioplayers/audioplayers.dart";
 import "package:flutter/material.dart";
 
 import "../../flame/game.dart";
+import "controls/player_controls.dart";
 import "pause_menu.dart";
 
 /// This class represents the pause button overlay.
@@ -31,6 +32,7 @@ class PauseButton extends StatelessWidget {
           _game.pauseEngine();
           _game.overlays.add(PauseMenu.id);
           _game.overlays.remove(PauseButton.id);
+          _game.overlays.remove(PlayerControls.id);
         },
       ),
     );

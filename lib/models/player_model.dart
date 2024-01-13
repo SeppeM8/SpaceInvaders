@@ -43,4 +43,10 @@ class PlayerModel {
     ability!.execute(this);
     _gameModel.notify();
   }
+
+  /// Resets the player model.
+  void reset() {
+    ability = null;
+    abilityActive = false;
+  }
 }
